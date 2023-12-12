@@ -8,16 +8,16 @@ const reversedArray = reverseArray(originalArray);
 console.log(reversedArray);
 
 function uniqueValues(arr1, arr2) {
-  let arr = arr1.concat(arr2);
-  let result = [];
+  let arr3 = arr1.concat(arr2);
+  let arr = [];
 
-  for (let el of arr) {
-    if (!result.includes(el)) {
-      result.push(el);
+  for (let el of arr3) {
+    if (!arr.includes(el)) {
+      arr.push(el);
     }
   }
 
-  return result;
+  return arr;
 }
 
 const array1 = [1, 2, 3, 4, 5];
@@ -29,6 +29,7 @@ console.log(uniqueValuesArray);
 function calculateAverageGrade(persons) {
   let averageGrade =
     persons.reduce((prev, person) => prev + person.grade, 0) / persons.length;
+
   return averageGrade.toFixed(1);
 }
 
