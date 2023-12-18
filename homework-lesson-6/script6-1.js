@@ -9,13 +9,7 @@ console.log(reversedArray);
 
 function uniqueValues(arr1, arr2) {
   let arr3 = arr1.concat(arr2);
-  let arr = [];
-
-  for (let el of arr3) {
-    if (!arr.includes(el)) {
-      arr.push(el);
-    }
-  }
+  let arr = [...new Set(arr3)];
 
   return arr;
 }
