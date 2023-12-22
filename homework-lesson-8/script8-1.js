@@ -10,43 +10,54 @@ function summarize(num) {
 console.log(summarize(5)(12));
 
 function counter(startValue, step) {
+  let firstValue = startValue;
+
   function change() {
-    return (startValue += step);
+    return (firstValue += step);
   }
+
+  function update(newValue) {
+    firstValue = newValue;
+    return firstValue;
+  }
+
   return {
     increment: () => change(),
-    decrement: () => (startValue -= step),
-    reset: () => startValue,
+    decrement: () => (firstValue -= step),
+    reset: () => update(startValue),
   };
 }
 
-const count = counter(3, 7);
+const count = counter(7, 5);
 
 console.log(count.increment());
 console.log(count.reset());
 console.log(count.decrement());
+console.log(count.decrement());
+console.log(count.reset());
+console.log(count.decrement());
+console.log(count.increment());
 
 function sequence(fn1, fn2, ...fn) {
-  let a = 1;
+  let a = "mango";
 
   function fn1() {
     console.log(a);
   }
   function fn2() {
     fn1();
-    a = a + 1;
+    a = a + " " + "apple";
     console.log(a);
   }
   function fn() {
     fn2();
-    a = a + 2;
+    a = a + " " + "orange";
     console.log(a);
   }
-  function newFunc() {
-    fn();
-  }
 
-  return newFunc;
+  return () => {
+    fn();
+  };
 }
 
 const func = sequence();
