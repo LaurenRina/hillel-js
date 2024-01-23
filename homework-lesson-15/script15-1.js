@@ -9,11 +9,6 @@ async function searchCity(city) {
 }
 
 async function getForecast(coords) {
-  let apiKey = "3e5761385c02293899defe61082c2901";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?${coords}&appid=${apiKey}&units=metric`;
-  const response = await fetch(apiUrl);
-  const data = await response.json();
-
   let temperature = document.querySelector("#temperature");
   let max = document.querySelector("#max");
   let min = document.querySelector("#min");
@@ -21,6 +16,10 @@ async function getForecast(coords) {
   let feels = document.querySelector("#feels");
   let humidity = document.querySelector("#humidity");
   let wind = document.querySelector("#wind");
+  let apiKey = "3e5761385c02293899defe61082c2901";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?${coords}&appid=${apiKey}&units=metric`;
+  const response = await fetch(apiUrl);
+  const data = await response.json();
 
   temperature.innerHTML = data.main.temp.toFixed(0);
   max.innerHTML = data.main.temp_max.toFixed(0);
