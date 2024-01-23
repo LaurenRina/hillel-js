@@ -38,24 +38,24 @@
 // const a = hello();
 // a.then(console.log);
 
-// async function fetchData(num) {
-//   const response = await fetch(`https://swapi.dev/api/people/${num}/`);
-//   const data = await response.json();
-//   return data;
-// }
-
-// console.log(fetchData(5));
-
 async function fetchData(num) {
-  try {
-    const response = await fetch(`https://swapi.dev/api/people/${num}/`);
-    if (!response.success) {
-      throw new Error("Request s failed");
-    }
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.log(error.message);
-    throw error;
-  }
+  const response = await fetch(`https://swapi.dev/api/people/${num}/`);
+  const data = await response.json();
+  return data.gender;
 }
+
+console.log(fetchData(5));
+
+// async function fetchData(num) {
+//   try {
+//     const response = await fetch(`https://swapi.dev/api/people/${num}/`);
+//     if (!response.success) {
+//       throw new Error("Request s failed");
+//     }
+//     const data = await response.json();
+//     return data;
+//   } catch (error) {
+//     console.log(error.message);
+//     throw error;
+//   }
+// }
