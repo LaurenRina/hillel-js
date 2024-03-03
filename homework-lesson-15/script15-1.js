@@ -1,10 +1,20 @@
+async function fetchWeatherData(city) {
+  try {
+    const coords = await searchCity(city);
+    const forecast = await getForecast(coords);
+    return forecast;
+  } catch (error) {
+    console.error("Error fetching weather data:", error);
+    throw error;
+  }
+}
+
 async function searchCity(city) {
   let apiKey = "3e5761385c02293899defe61082c2901";
   let apiUrl = `http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=${apiKey}`;
   const response = await fetch(apiUrl);
   const data = await response.json();
   const coords = `lat=${data[0].lat}&lon=${data[0].lon}`;
-  await getForecast(coords);
   return coords;
 }
 
@@ -33,10 +43,10 @@ async function getForecast(coords) {
 function submit(event) {
   event.preventDefault();
   let searchInput = document.querySelector("#search-input");
-  searchCity(searchInput.value);
+  fetchWeatherData(searchInput.value);
 }
 
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", submit);
 
-searchCity("Rome");
+fetchWeatherData("Rome");
